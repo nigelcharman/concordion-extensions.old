@@ -9,4 +9,6 @@ Thanks to Trent Richardson for the "CSS Tooltip":http://trentrichardson.com/exam
 
 This extension captures java.util.logging output. (It would probably benefit from some configuration options - feel free to provide feedback!)
 
+It requires the new extension mechanism in Concordion. (This is currently in the nigel-charman branch of the Concordion source tree while we garner community feedback - you'll need to check out this branch and build it).
+
 The extension is installed by setting the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.annotate.ConcordionLoggingAnnotator</code>.
