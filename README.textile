@@ -1,0 +1,12 @@
+h1. concordion-log-annotator
+
+This is a Concordion:http://concordion.org extension that annotates the Concordion HTML output with logging information. 
+See my blog for details and screenshots.
+
+Currently the code is at a "Proof of Concept" stage, and any feedback is welcome.
+
+Thanks to Trent Richardson for the "CSS Tooltip":http://trentrichardson.com/examples/csstooltips/ implementation.
+
+This extension captures java.util.logging output. (It would probably benefit from some configuration options - feel free to provide feedback!)
+
+The extension is installed by setting the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.annotate.ConcordionLoggingAnnotator</code>.

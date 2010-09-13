@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group   = 'nz.co.twoten'
+version = '1.0.0-SNAPSHOT'
+archivesBaseName = 'concordion-log-annotator'
+eclipseProject.projectName = 'concordion-log-annotator'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile "org.concordion:concordion:1.3.3-SNAPSHOT", 
+}
