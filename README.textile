@@ -1,7 +1,8 @@
 h1. concordion-log-annotator
 
 This is a "Concordion":http://concordion.org extension that annotates the Concordion HTML output with logging information. 
-See my blog for details and screenshots.
+
+See "my blog":http://tutansblog.blogspot.com/2010/09/whats-happening-in-my-acceptance-tests.html for details and screenshots.
 
 Currently the code is at a "Proof of Concept" stage, and any feedback is welcome.
 
