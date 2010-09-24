@@ -9,19 +9,19 @@ import java.util.logging.StreamHandler;
 import nz.co.twoten.jul.formatter.TimeAndMessageFormatter;
 
 import org.concordion.api.Resource;
-import org.concordion.internal.command.AssertEqualsListener;
-import org.concordion.internal.command.AssertFailureEvent;
-import org.concordion.internal.command.AssertFalseListener;
-import org.concordion.internal.command.AssertSuccessEvent;
-import org.concordion.internal.command.AssertTrueListener;
-import org.concordion.internal.command.ExecuteEvent;
-import org.concordion.internal.command.ExecuteListener;
-import org.concordion.internal.command.ExpressionEvaluatedEvent;
-import org.concordion.internal.command.MissingRowEvent;
-import org.concordion.internal.command.SpecificationProcessingEvent;
-import org.concordion.internal.command.SpecificationProcessingListener;
-import org.concordion.internal.command.SurplusRowEvent;
-import org.concordion.internal.command.VerifyRowsListener;
+import org.concordion.api.command.AssertEqualsListener;
+import org.concordion.api.command.AssertFailureEvent;
+import org.concordion.api.command.AssertFalseListener;
+import org.concordion.api.command.AssertSuccessEvent;
+import org.concordion.api.command.AssertTrueListener;
+import org.concordion.api.command.ExecuteEvent;
+import org.concordion.api.command.ExecuteListener;
+import org.concordion.api.command.ExpressionEvaluatedEvent;
+import org.concordion.api.command.MissingRowEvent;
+import org.concordion.api.command.SpecificationProcessingEvent;
+import org.concordion.api.command.SpecificationProcessingListener;
+import org.concordion.api.command.SurplusRowEvent;
+import org.concordion.api.command.VerifyRowsListener;
 
 public class JulTooltipExtension implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ExecuteListener, SpecificationProcessingListener, VerifyRowsListener { //, DocumentParsingListener {
 
