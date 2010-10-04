@@ -1,6 +1,12 @@
-h1. concordion-log-annotator
+h1. concordion-extensions
 
-This is a "Concordion":http://concordion.org extension that annotates the Concordion HTML output with logging information. 
+Contains 3 "Concordion":http://concordion.org extensions. These require the new extension mechanism in Concordion. (This is currently in the nigel-charman branch of the Concordion - you'll need to check out this branch and build it).
+
+To install all 3 extensions, set the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.Extensions</code>, or see the individual extensions for installation details.  To install more than 1 extension, supply a comma-separated list of extensions in the <code>concordion.extensions</code> system property.
+
+h2. LoggingTooltipExtension
+
+Annotates the Concordion HTML output with logging information. 
 
 See "my blog":http://tutansblog.blogspot.com/2010/09/whats-happening-in-my-acceptance-tests.html for details and screenshots.
 
@@ -10,6 +16,18 @@ Thanks to Trent Richardson for the "CSS Tooltip":http://trentrichardson.com/exam
 
 This extension captures java.util.logging output. (It would probably benefit from some configuration options - feel free to provide feedback!)
 
-It requires the new extension mechanism in Concordion. (This is currently in the nigel-charman branch of the Concordion source tree while we garner community feedback - you'll need to check out this branch and build it).
+This extension is installed by setting the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.LoggingTooltipExtension</code>.
 
-The extension is installed by setting the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.annotate.ConcordionLoggingAnnotator</code>.
+h2. ScreenshotOnFailureExtension
+
+On failure of any Concordion assertion, this adds a screenshot to the output HTML.  The screenshot is displayed when you hover over the red failure text. 
+
+This currently uses java.awt.Robot to capture the screenshot.  We plan to allow pluggable mechanisms for screenshots, for example using the WebDriver TakesScreenshot interface to allow specific windows to be captured.
+
+This extension is installed by setting the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.ScreenshotOnFailureExtension</code>.
+
+h2. TimestampFormatterExtension
+
+A simple extension that reformats the milliseconds in the footer of the Concordion output to show hours, minutes and seconds. 
+
+This extension is installed by setting the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.TimestampFormatterExtension</code>.
