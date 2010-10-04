@@ -1,11 +1,11 @@
-a.tt img {border: none; } 
+a.tt img {border: none; padding-left:4px;} 
 
 /*---------- bubble tooltip, courtesy of trentrichardson.com -----------*/
 a.tt{
     position:relative;
     z-index:24;
     color:#3CA3FF;
-  font-weight:bold;
+    font-size:10pt;
     text-decoration:none;
 }
 a.tt span{ display: none; }
@@ -20,10 +20,10 @@ a.tt:hover span.tooltip{
   width:400px;
   color: #993300;
     text-align: left;
-  filter: alpha(opacity:90);
-  KHTMLOpacity: 0.90;
-  MozOpacity: 0.90;
-  opacity: 0.90;
+  filter: alpha(opacity:95);
+  KHTMLOpacity: 0.95;
+  MozOpacity: 0.95;
+  opacity: 0.95;
 }
 a.tt:hover span.top{
   display: block;

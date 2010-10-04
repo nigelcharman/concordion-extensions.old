@@ -24,6 +24,12 @@ public class TooltipRenderer {
             Element td = new Element("td"); 
             element.appendChild(td);
             td.appendChild(tooltip(resource, text));
+        } else if (element.getLocalName().equals("td")) {
+            Element span = new Element("span");
+            element.moveChildrenTo(span);
+            element.moveAttributesTo(span);
+            element.appendChild(span);
+            element.appendChild(tooltip(resource, text));
         } else {
             element.appendNonBreakingSpace();
             element.appendSister(tooltip(resource, text));

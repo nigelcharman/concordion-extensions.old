@@ -8,6 +8,7 @@ import java.util.logging.StreamHandler;
 
 import nz.co.twoten.jul.formatter.TimeAndMessageFormatter;
 
+import org.concordion.api.Element;
 import org.concordion.api.Resource;
 import org.concordion.api.command.AssertEqualsListener;
 import org.concordion.api.command.AssertFailureEvent;
@@ -21,15 +22,18 @@ import org.concordion.api.command.MissingRowEvent;
 import org.concordion.api.command.SpecificationProcessingEvent;
 import org.concordion.api.command.SpecificationProcessingListener;
 import org.concordion.api.command.SurplusRowEvent;
+import org.concordion.api.command.ThrowableCaughtEvent;
+import org.concordion.api.command.ThrowableCaughtListener;
 import org.concordion.api.command.VerifyRowsListener;
 
-public class JulTooltipExtension implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ExecuteListener, SpecificationProcessingListener, VerifyRowsListener { //, DocumentParsingListener {
+public class TooltipRenderingListener implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ExecuteListener,
+        SpecificationProcessingListener, VerifyRowsListener, ThrowableCaughtListener {
 
     private TooltipRenderer renderer;
     private Resource resource;
 
     private static final ByteArrayOutputStream baos;
-    private static final StreamHandler streamHandler; 
+    private static final StreamHandler streamHandler;
 
     static {
         baos = new ByteArrayOutputStream(4096);
@@ -48,8 +52,8 @@ public class JulTooltipExtension implements AssertEqualsListener, AssertTrueList
             }
         }
     }
-    
-    JulTooltipExtension(Resource iconResource, Resource tooltipCssResource) {
+
+    public TooltipRenderingListener(Resource iconResource, Resource tooltipCssResource) {
         renderer = new TooltipRenderer(iconResource);
     }
 
@@ -63,38 +67,27 @@ public class JulTooltipExtension implements AssertEqualsListener, AssertTrueList
     }
 
     public void executeCompleted(ExecuteEvent event) {
-        String text = getLogMessages();
-        
-        if (text.length() > 0) {
-            renderer.hoverText(resource, event.getElement(), text);
-        }
+        renderLogMessages(event.getElement());
     }
 
     @Override
     public void failureReported(AssertFailureEvent event) {
-        String text = getLogMessages();
-        
-        if (text.length() > 0) {
-            renderer.hoverText(resource, event.getElement(), text);
-        }
+        renderLogMessages(event.getElement());
     }
 
     @Override
     public void successReported(AssertSuccessEvent event) {
-        String text = getLogMessages();
-        
-        if (text.length() > 0) {
-            renderer.hoverText(resource, event.getElement(), text);
-        }
+        renderLogMessages(event.getElement());
     }
 
     @Override
     public void expressionEvaluated(ExpressionEvaluatedEvent event) {
-        String text = getLogMessages();
-        
-        if (text.length() > 0) {
-            renderer.hoverText(resource, event.getElement(), text);
-        }
+        renderLogMessages(event.getElement());
+    }
+
+    @Override
+    public void throwableCaught(ThrowableCaughtEvent event) {
+        renderLogMessages(event.getElement());
     }
 
     @Override
@@ -103,6 +96,14 @@ public class JulTooltipExtension implements AssertEqualsListener, AssertTrueList
 
     @Override
     public void surplusRow(SurplusRowEvent event) {
+    }
+
+    private void renderLogMessages(Element element) {
+        String text = getLogMessages();
+
+        if (text.length() > 0) {
+            renderer.hoverText(resource, element, text);
+        }
     }
 
     private String getLogMessages() {
