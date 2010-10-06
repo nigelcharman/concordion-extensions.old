@@ -1,6 +1,6 @@
 h1. concordion-extensions
 
-Contains 3 "Concordion":http://concordion.org extensions. These require the new extension mechanism in Concordion. (This is currently in the nigel-charman branch of the Concordion - you'll need to check out this branch and build it).
+Contains 3 "Concordion":http://concordion.org extensions. These require the new extension mechanism in Concordion. (This is currently in the trunk of Concordion - you'll need to check out the Concordion source and build it).
 
 To install all 3 extensions, set the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.Extensions</code>, or see the individual extensions for installation details.  To install more than 1 extension, supply a comma-separated list of extensions in the <code>concordion.extensions</code> system property.
 
