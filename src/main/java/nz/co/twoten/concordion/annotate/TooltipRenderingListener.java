@@ -3,6 +3,7 @@ package nz.co.twoten.concordion.annotate;
 import java.io.ByteArrayOutputStream;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.StreamHandler;
 
@@ -32,29 +33,33 @@ public class TooltipRenderingListener implements AssertEqualsListener, AssertTru
     private TooltipRenderer renderer;
     private Resource resource;
 
-    private static final ByteArrayOutputStream baos;
-    private static final StreamHandler streamHandler;
+    private final ByteArrayOutputStream baos;
+    private final StreamHandler streamHandler;
 
-    static {
+    public TooltipRenderingListener(Resource iconResource, String loggerNames, String loggingLevel, boolean removeRootConsoleLoggingHandler) {
         baos = new ByteArrayOutputStream(4096);
         streamHandler = new StreamHandler(baos, new TimeAndMessageFormatter());
-        Logger logger = Logger.getLogger("");
-        removeConsoleHandler(logger);
-        logger.addHandler(streamHandler);
-    }
-
-    private static void removeConsoleHandler(Logger logger) {
-        Handler[] handlers = logger.getHandlers();
-        for (Handler handler : handlers) {
-            if (handler instanceof ConsoleHandler) {
-                System.out.println("Removing console handler");
-                logger.removeHandler(handler);
-            }
+        Level requestedLevel = Level.parse(loggingLevel.toUpperCase());
+        streamHandler.setLevel(requestedLevel);
+        for (String loggerName : loggerNames.split(",")) {
+            Logger logger = Logger.getLogger(loggerName.trim());
+            logger.addHandler(streamHandler);
+        }
+        renderer = new TooltipRenderer(iconResource);
+        if (removeRootConsoleLoggingHandler) {
+            removeRootConsoleHandler();
         }
     }
 
-    public TooltipRenderingListener(Resource iconResource, Resource tooltipCssResource) {
-        renderer = new TooltipRenderer(iconResource);
+    private  void removeRootConsoleHandler() {
+        Logger logger = Logger.getLogger("");
+        Handler[] handlers = logger.getHandlers();
+        for (Handler handler : handlers) {
+            if (handler instanceof ConsoleHandler) {
+                System.out.println("LoggingTooltipExtension: removing root console logging handler");
+                logger.removeHandler(handler);
+            }
+        }
     }
 
     @Override
@@ -66,6 +71,7 @@ public class TooltipRenderingListener implements AssertEqualsListener, AssertTru
     public void afterProcessingSpecification(SpecificationProcessingEvent event) {
     }
 
+    @Override
     public void executeCompleted(ExecuteEvent event) {
         renderLogMessages(event.getElement());
     }

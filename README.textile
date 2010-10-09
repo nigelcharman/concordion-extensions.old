@@ -2,32 +2,90 @@ h1. concordion-extensions
 
 Contains 3 "Concordion":http://concordion.org extensions. These require the new extension mechanism in Concordion. (This is currently in the nigel-charman branch of the Concordion - you'll need to check out this branch and build it).
 
-To install all 3 extensions, set the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.Extensions</code>, or see the individual extensions for installation details.  To install more than 1 extension, supply a comma-separated list of extensions in the <code>concordion.extensions</code> system property.
+To install all 3 extensions, set the @concordion.extensions@ system property to @nz.co.twoten.concordion.Extensions@, or see the individual extensions for installation details.  To install more than 1 extension, supply a comma-separated list of extensions in the @concordion.extensions@ system property.
 
 h2. LoggingTooltipExtension
 
-Annotates the Concordion HTML output with logging information. 
+Annotates the Concordion HTML output with logging information captured using java.util.logging. See "my blog":http://tutansblog.blogspot.com/2010/09/whats-happening-in-my-acceptance-tests.html for details and screenshots.
 
-See "my blog":http://tutansblog.blogspot.com/2010/09/whats-happening-in-my-acceptance-tests.html for details and screenshots.
+h4. Installing and configuring
 
-Currently the code is at a "Proof of Concept" stage, and any feedback is welcome.
+To install the extension:
 
+bc.. 
+     System.setProperty("concordion.extensions", "nz.co.twoten.concordion.LoggingTooltipExtension");
+bc.. 
+
+p. 
+By default, this extension will capture all output from the root logger and disable console logging of the root logger.
+For finer-grained control, the logger names can be configured by passing a comma separated list of logger names to @setLoggerNames(String)@.
+The logging level of this handler can also be set, and the option to disable console logging can be overridden.
+
+bc.. 
+     LoggingTooltipExtension.setLoggerNames("carbon.CarbonCalculatorTest", "selenium.events");
+     LoggingTooltipExtension.setLoggingLevel("FINE");
+     LoggingTooltipExtension.setRemoveRootConsoleLoggingHandler(false);
+     System.setProperty("concordion.extensions", "nz.co.twoten.concordion.LoggingTooltipExtension");
+     Logger.getLogger("carbon.CarbonCalculatorTest").setLevel(Level.FINE);
+
+p. 
 Thanks to Trent Richardson for the "CSS Tooltip":http://trentrichardson.com/examples/csstooltips/ implementation.
 
-This extension captures java.util.logging output. (It would probably benefit from some configuration options - feel free to provide feedback!)
+h2. ScreenshotExtension
 
-This extension is installed by setting the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.LoggingTooltipExtension</code>.
+Adds screenshots to the Concordion output, typically when failures or exceptions occur. The screenshot is displayed when you hover over the relevant element, 
+and clicking on the element will open the image in the current browser window. 
 
-h2. ScreenshotOnFailureExtension
+It can also be used as a command, to explicitly add screenshots to the output HTML. 
 
-On failure of any Concordion assertion, this adds a screenshot to the output HTML.  The screenshot is displayed when you hover over the red failure text. 
+h4. Installing and configuring
 
-This currently uses java.awt.Robot to capture the screenshot.  We plan to allow pluggable mechanisms for screenshots, for example using the WebDriver TakesScreenshot interface to allow specific windows to be captured.
+By default, this extension will add screenshots to the output whenever an assertion fails, or an uncaught Throwable occurs in the test. 
+These options are configurable and an option is also available to take screenshots when assertions pass. 
 
-This extension is installed by setting the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.ScreenshotOnFailureExtension</code>.
+Typical usage is:
+
+bc.. 
+     ScreenshotExtension.setMaxWidth(400);
+     // ScreenshotExtension.setScreenshotOnThrowable(false);
+     // ScreenshotExtension.setScreenshotOnAssertionSuccess(true);
+     System.setProperty("concordion.extensions", "nz.co.twoten.concordion.ScreenshotExtension");
+bc.. 
+
+h4. Customising the Screenshot Taker
+
+The screenshot will be of the full visible screen, by default.  This can be overridden using a custom @ScreenshotTaker@.  For example, 
+a Selenium2 ScreenshotTaker would ensure that only the browser window is captured, that the full browser page is captured and that it is 
+captured regardless of whether the browser window is currently displayed. 
+
+bc.. 
+     EventFiringWebDriver driver = new EventFiringWebDriver(new FirefoxDriver());
+     ScreenshotTaker screenshotTaker = new SeleniumScreenshotTaker();
+     driver.register(screenshotTaker);
+     ScreenshotExtension.setScreenshotTaker(screenshotTaker);
+bc.. 
+
+h4. Using as a command
+ 
+To explicitly include a screenshot in your output, add an attribute named @screenshot@ using the namespace
+@"http://210.co.nz/2010/concordion"@ to your Concordion HTML. For example:
+ 
+bc.. 
+&lt;html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:twoten="http://210.co.nz/2010/concordion"&gt;
+....
+&lt;div twoten:screenshot=""/&gt;
+...
+bc.. 
+  
+p. 
+By default, the screenshot is embedded in the output HTML. If you'd rather have it linked, set the attribute value to @linked@, for example:
+
+bc.. 
+&lt;p&gt;See &lt;span twoten:screenshot="linked" style="text-decoration: underline;"&gt;this screen&lt;/span&gt;&lt;/p&gt;
+bc.. 
 
 h2. TimestampFormatterExtension
 
 A simple extension that reformats the milliseconds in the footer of the Concordion output to show hours, minutes and seconds. 
 
-This extension is installed by setting the <code>concordion.extensions</code> system property to <code>nz.co.twoten.concordion.TimestampFormatterExtension</code>.
+This extension is installed by setting the @concordion.extensions@ system property to @nz.co.twoten.concordion.TimestampFormatterExtension@.
