@@ -14,7 +14,6 @@ To install the extension:
 
 bc.. 
      System.setProperty("concordion.extensions", "nz.co.twoten.concordion.LoggingTooltipExtension");
-bc.. 
 
 p. 
 By default, this extension will capture all output from the root logger and disable console logging of the root logger.
@@ -50,7 +49,6 @@ bc..
      // ScreenshotExtension.setScreenshotOnThrowable(false);
      // ScreenshotExtension.setScreenshotOnAssertionSuccess(true);
      System.setProperty("concordion.extensions", "nz.co.twoten.concordion.ScreenshotExtension");
-bc.. 
 
 h4. Customising the Screenshot Taker
 
@@ -63,7 +61,6 @@ bc..
      ScreenshotTaker screenshotTaker = new SeleniumScreenshotTaker();
      driver.register(screenshotTaker);
      ScreenshotExtension.setScreenshotTaker(screenshotTaker);
-bc.. 
 
 h4. Using as a command
  
@@ -75,14 +72,12 @@ bc..
 ....
 &lt;div twoten:screenshot=""/&gt;
 ...
-bc.. 
   
 p. 
 By default, the screenshot is embedded in the output HTML. If you'd rather have it linked, set the attribute value to @linked@, for example:
 
 bc.. 
 &lt;p&gt;See &lt;span twoten:screenshot="linked" style="text-decoration: underline;"&gt;this screen&lt;/span&gt;&lt;/p&gt;
-bc.. 
 
 h2. TimestampFormatterExtension
 
