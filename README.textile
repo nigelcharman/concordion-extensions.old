@@ -4,6 +4,15 @@ Contains 3 "Concordion":http://concordion.org extensions. These require the new 
 
 To install all 3 extensions, set the @concordion.extensions@ system property to @nz.co.twoten.concordion.Extensions@, or see the individual extensions for installation details.  To install more than 1 extension, supply a comma-separated list of extensions in the @concordion.extensions@ system property.
 
+The system property is typically set in the @BeforeClass of a base test case:
+
+bc..    @BeforeClass
+   public static void addExtensions() {
+       System.setProperty("concordion.extensions", "nz.co.twoten.concordion.Extensions");
+   }
+
+p. 
+
 h2. LoggingTooltipExtension
 
 Annotates the Concordion HTML output with logging information captured using java.util.logging. See "my blog":http://tutansblog.blogspot.com/2010/09/whats-happening-in-my-acceptance-tests.html for details and screenshots.
@@ -19,8 +28,7 @@ By default, this extension will capture all output from the root logger and disa
 For finer-grained control, the logger names can be configured by passing a comma separated list of logger names to @setLoggerNames(String)@.
 The logging level of this handler can also be set, and the option to disable console logging can be overridden.
 
-bc.. 
-     LoggingTooltipExtension.setLoggerNames("carbon.CarbonCalculatorTest", "selenium.events");
+bc..      LoggingTooltipExtension.setLoggerNames("carbon.CarbonCalculatorTest", "selenium.events");
      LoggingTooltipExtension.setLoggingLevel("FINE");
      LoggingTooltipExtension.setRemoveRootConsoleLoggingHandler(false);
      System.setProperty("concordion.extensions", "nz.co.twoten.concordion.LoggingTooltipExtension");
@@ -42,8 +50,7 @@ These options are configurable and an option is also available to take screensho
 
 Typical usage is:
 
-bc.. 
-     ScreenshotExtension.setMaxWidth(400);
+bc..      ScreenshotExtension.setMaxWidth(400);
      // ScreenshotExtension.setScreenshotOnThrowable(false);
      // ScreenshotExtension.setScreenshotOnAssertionSuccess(true);
      System.setProperty("concordion.extensions", "nz.co.twoten.concordion.ScreenshotExtension");
@@ -54,8 +61,7 @@ The screenshot will be of the full visible screen, by default.  This can be over
 a Selenium2 ScreenshotTaker would ensure that only the browser window is captured, that the full browser page is captured and that it is 
 captured regardless of whether the browser window is currently displayed. 
 
-bc.. 
-     EventFiringWebDriver driver = new EventFiringWebDriver(new FirefoxDriver());
+bc..      EventFiringWebDriver driver = new EventFiringWebDriver(new FirefoxDriver());
      ScreenshotTaker screenshotTaker = new SeleniumScreenshotTaker();
      driver.register(screenshotTaker);
      ScreenshotExtension.setScreenshotTaker(screenshotTaker);
@@ -65,17 +71,15 @@ h4. Using as a command
 To explicitly include a screenshot in your output, add an attribute named @screenshot@ using the namespace
 @"http://210.co.nz/2010/concordion"@ to your Concordion HTML. For example:
  
-bc.. 
-&lt;html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:twoten="http://210.co.nz/2010/concordion"&gt;
+bc.. <html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:twoten="http://210.co.nz/2010/concordion">
 ....
-&lt;div twoten:screenshot=""/&gt;
+<div twoten:screenshot=""/>
 ...
   
 p. 
 By default, the screenshot is embedded in the output HTML. If you'd rather have it linked, set the attribute value to @linked@, for example:
 
-bc.. 
-&lt;p&gt;See &lt;span twoten:screenshot="linked" style="text-decoration: underline;"&gt;this screen&lt;/span&gt;&lt;/p&gt;
+bc.. <p>See <span twoten:screenshot="linked" style="text-decoration: underline;">this screen</span></p>
 
 h2. TimestampFormatterExtension
 
