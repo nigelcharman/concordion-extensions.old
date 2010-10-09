@@ -12,9 +12,7 @@ h4. Installing and configuring
 
 To install the extension:
 
-bc.. 
-     System.setProperty("concordion.extensions", "nz.co.twoten.concordion.LoggingTooltipExtension");
-bc.. 
+bc..      System.setProperty("concordion.extensions", "nz.co.twoten.concordion.LoggingTooltipExtension");
 
 p. 
 By default, this extension will capture all output from the root logger and disable console logging of the root logger.
@@ -33,8 +31,7 @@ Thanks to Trent Richardson for the "CSS Tooltip":http://trentrichardson.com/exam
 
 h2. ScreenshotExtension
 
-Adds screenshots to the Concordion output, typically when failures or exceptions occur. The screenshot is displayed when you hover over the relevant element, 
-and clicking on the element will open the image in the current browser window. 
+Adds screenshots to the Concordion output, typically when failures or exceptions occur. The screenshot is displayed when you hover over the relevant element, and clicking on the element will open the image in the current browser window. 
 
 It can also be used as a command, to explicitly add screenshots to the output HTML. 
 
@@ -50,7 +47,6 @@ bc..
      // ScreenshotExtension.setScreenshotOnThrowable(false);
      // ScreenshotExtension.setScreenshotOnAssertionSuccess(true);
      System.setProperty("concordion.extensions", "nz.co.twoten.concordion.ScreenshotExtension");
-bc.. 
 
 h4. Customising the Screenshot Taker
 
@@ -63,7 +59,6 @@ bc..
      ScreenshotTaker screenshotTaker = new SeleniumScreenshotTaker();
      driver.register(screenshotTaker);
      ScreenshotExtension.setScreenshotTaker(screenshotTaker);
-bc.. 
 
 h4. Using as a command
  
@@ -75,14 +70,12 @@ bc..
 ....
 &lt;div twoten:screenshot=""/&gt;
 ...
-bc.. 
   
 p. 
 By default, the screenshot is embedded in the output HTML. If you'd rather have it linked, set the attribute value to @linked@, for example:
 
 bc.. 
 &lt;p&gt;See &lt;span twoten:screenshot="linked" style="text-decoration: underline;"&gt;this screen&lt;/span&gt;&lt;/p&gt;
-bc.. 
 
 h2. TimestampFormatterExtension
 
