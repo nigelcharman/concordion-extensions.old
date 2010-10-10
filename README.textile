@@ -71,13 +71,10 @@ To install the extension:
 bc..      System.setProperty("concordion.extensions", "nz.co.twoten.concordion.ScreenshotExtension");
 
 p. 
-These options are configurable and an option is also available to take screenshots when assertions pass. 
-
-Typical usage is:
 
 h4. Custom Configuration
 
-The extension can be customised using an {@link ConcordionExtensionFactory} to create and modify the extension.  
+The extension can be customised using an @ConcordionExtensionFactory@ to create and modify the extension.  
 
 An example factory:
 
@@ -95,7 +92,7 @@ public class ScreenshotExtensionFactory implements ConcordionExtensionFactory {
     private static ScreenshotExtension extension;
     private static ScreenshotTaker screenshotTaker = new SeleniumScreenshotTaker();
 
-    &#064;Override
+    @Override
     public ConcordionExtension createExtension() {
         extension = new ScreenshotExtension();
         extension.setScreenshotTaker(screenshotTaker);
@@ -140,7 +137,7 @@ bc.. <p>See <span twoten:screenshot="linked" style="text-decoration: underline;"
 
 h4. The Screenshot Taker
 
-By default, the screenshot will be of the full visible screen.  This can be overridden using a custom {@link ScreenshotTaker}.  For example, the SeleniumScreenshotTaker in the above examples ensures that only the browser window is captured, that the full browser page is captured and that it is captured regardless of whether the browser window is currently displayed.
+By default, the screenshot will be of the full visible screen.  This can be overridden using a custom @ScreenshotTaker@.  For example, the @SeleniumScreenshotTaker@ in the above examples ensures that only the browser window is captured, that the full browser page is captured and that it is captured regardless of whether the browser window is currently displayed.
 
 h2. TimestampFormatterExtension
 
