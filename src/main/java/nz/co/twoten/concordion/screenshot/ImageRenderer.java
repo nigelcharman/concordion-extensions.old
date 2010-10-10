@@ -6,19 +6,19 @@ public class ImageRenderer {
 
     public static final String CSS = "\n" +
         ".screenshot {\n" +
-        "   position:absolute;\n" +
-        "   visibility:hidden;\n" +
-        "   border:solid 1px black;\n" +
-        "   z-index:30;\n" +
+        "  position:absolute;\n" +
+        "  visibility:hidden;\n" +
+        "  border:solid 1px black;\n" +
+        "  z-index:30;\n" +
         "}\n";
 
     public static final String script = "\n" +
         "function show(id) {\n" +
-        "   document.getElementById(id).style.visibility = 'visible';\n" +
+        "  document.getElementById(id).style.visibility = 'visible';\n" +
         "}\n" +
         "\n" +
         "function hide(id) {\n" +
-        "   document.getElementById(id).style.visibility = 'hidden';\n" +
+        "  document.getElementById(id).style.visibility = 'hidden';\n" +
         "}\n";
 
     private final boolean hidden;

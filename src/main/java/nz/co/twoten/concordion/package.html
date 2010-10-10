@@ -17,7 +17,7 @@ limitations under the License.
  -->
  
  <p>
-This package contains 3 extensions to:
+This package contains extensions to:
 <ol>
     <li>embed logging information in the Concordion output</li>
     <li>embed screenshots in the Concordion output</li>
@@ -31,6 +31,7 @@ This is typically set in the &#064;BeforeClass of a base test case:</p>
       System.setProperty("concordion.extensions", "nz.co.twoten.concordion.Extensions");
     }
 </pre>
-<p>The extensions may also be installed individually and have a number of customisation options. See the Javadoc of each extension for details. 
-To install more than 1 extension, supply a comma-separated list of extensions in the <code>concordion.extensions</code> system property.</p> 
+<p>The extensions may also be installed individually and have a number of customisation options. See the Javadoc of each extension for details.
+To install multiple or customised extensions, supply a comma-separated list of extensions or extension factories in the <code>concordion.extensions</code> system property. 
+</p> 
 </body>

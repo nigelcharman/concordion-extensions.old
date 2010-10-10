@@ -30,23 +30,22 @@ import org.concordion.api.command.VerifyRowsListener;
 public class TooltipRenderingListener implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ExecuteListener,
         SpecificationProcessingListener, VerifyRowsListener, ThrowableCaughtListener {
 
-    private TooltipRenderer renderer;
-    private Resource resource;
-
     private final ByteArrayOutputStream baos;
     private final StreamHandler streamHandler;
+    private final TooltipRenderer renderer;
 
-    public TooltipRenderingListener(Resource iconResource, String loggerNames, String loggingLevel, boolean removeRootConsoleLoggingHandler) {
+    private Resource resource;
+
+    public TooltipRenderingListener(Resource iconResource, String loggerNames, Level loggingLevel, boolean displayRootConsoleLogging) {
         baos = new ByteArrayOutputStream(4096);
         streamHandler = new StreamHandler(baos, new TimeAndMessageFormatter());
-        Level requestedLevel = Level.parse(loggingLevel.toUpperCase());
-        streamHandler.setLevel(requestedLevel);
+        streamHandler.setLevel(loggingLevel);
         for (String loggerName : loggerNames.split(",")) {
             Logger logger = Logger.getLogger(loggerName.trim());
             logger.addHandler(streamHandler);
         }
         renderer = new TooltipRenderer(iconResource);
-        if (removeRootConsoleLoggingHandler) {
+        if (!displayRootConsoleLogging) {
             removeRootConsoleHandler();
         }
     }

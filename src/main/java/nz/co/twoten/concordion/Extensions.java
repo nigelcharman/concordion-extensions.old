@@ -14,7 +14,8 @@ import org.concordion.api.extension.ConcordionExtension;
  *   }
  * </pre>
  * <p>The extensions may also be installed individually and have a number of customisation options. See the Javadoc of each extension for details.</p>
- * 
+ * <b>NOTE:</b> only use this class if you want the default configuration of each extension.  If you wish to customise, you will need to
+ * specify each extension, or extension factory, in a comma-separated list to the <code>concordion.extensions</code> property. 
  */
 public class Extensions implements ConcordionExtension {
 

@@ -27,14 +27,14 @@ import org.concordion.api.command.ThrowableCaughtEvent;
 import org.concordion.api.command.ThrowableCaughtListener;
 import org.concordion.internal.util.Check;
 
-public class ScreenshotTakingExtension extends AbstractCommand implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ConcordionBuildListener, SpecificationProcessingListener, ThrowableCaughtListener {
+public class ScreenshotEmbedder extends AbstractCommand implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ConcordionBuildListener, SpecificationProcessingListener, ThrowableCaughtListener {
 
-    private static int index = 1;
-    private static ScreenshotTaker screenshotTaker = new RobotScreenshotTaker();
-    static int maxWidth;
-    private static boolean screenshotOnAssertionFailure = true;
-    private static boolean screenshotOnAssertionSuccess = false;
-    private static boolean screenshotOnThrowable = true;
+    private int index = 1;
+    private ScreenshotTaker screenshotTaker = new RobotScreenshotTaker();
+    private int maxWidth;
+    private boolean screenshotOnAssertionFailure = true;
+    private boolean screenshotOnAssertionSuccess = false;
+    private boolean screenshotOnThrowable = true;
     
     private Resource resource;
     private Target target;
@@ -113,24 +113,24 @@ public class ScreenshotTakingExtension extends AbstractCommand implements Assert
         target = event.getTarget();
     }
 
-    public static void setScreenshotTaker(ScreenshotTaker screenshotTaker) {
-        ScreenshotTakingExtension.screenshotTaker = screenshotTaker;
+    public void setScreenshotTaker(ScreenshotTaker screenshotTaker) {
+        this.screenshotTaker = screenshotTaker;
     }
 
-    public static void setMaxWidth(int maxWidth) {
-        ScreenshotTakingExtension.maxWidth = maxWidth;
+    public void setMaxWidth(int maxWidth) {
+        this.maxWidth = maxWidth;
     }
 
-    public static void setScreenshotOnAssertionFailure(boolean takeShot) {
-        screenshotOnAssertionFailure = takeShot;
+    public void setScreenshotOnAssertionFailure(boolean takeShot) {
+        this.screenshotOnAssertionFailure = takeShot;
     }
 
-    public static void setScreenshotOnAssertionSuccess(boolean takeShot) {
-        screenshotOnAssertionSuccess = takeShot;
+    public void setScreenshotOnAssertionSuccess(boolean takeShot) {
+        this.screenshotOnAssertionSuccess = takeShot;
     }
     
-    public static void setScreenshotOnThrowable(boolean takeShot) {
-        screenshotOnThrowable = takeShot;
+    public void setScreenshotOnThrowable(boolean takeShot) {
+        this.screenshotOnThrowable = takeShot;
     }
 
     public String getCSS() {
