@@ -11,21 +11,21 @@ import nz.co.twoten.jul.formatter.TimeAndMessageFormatter;
 
 import org.concordion.api.Element;
 import org.concordion.api.Resource;
-import org.concordion.api.command.AssertEqualsListener;
-import org.concordion.api.command.AssertFailureEvent;
-import org.concordion.api.command.AssertFalseListener;
-import org.concordion.api.command.AssertSuccessEvent;
-import org.concordion.api.command.AssertTrueListener;
-import org.concordion.api.command.ExecuteEvent;
-import org.concordion.api.command.ExecuteListener;
-import org.concordion.api.command.ExpressionEvaluatedEvent;
-import org.concordion.api.command.MissingRowEvent;
-import org.concordion.api.command.SpecificationProcessingEvent;
-import org.concordion.api.command.SpecificationProcessingListener;
-import org.concordion.api.command.SurplusRowEvent;
-import org.concordion.api.command.ThrowableCaughtEvent;
-import org.concordion.api.command.ThrowableCaughtListener;
-import org.concordion.api.command.VerifyRowsListener;
+import org.concordion.api.listener.AssertEqualsListener;
+import org.concordion.api.listener.AssertFailureEvent;
+import org.concordion.api.listener.AssertFalseListener;
+import org.concordion.api.listener.AssertSuccessEvent;
+import org.concordion.api.listener.AssertTrueListener;
+import org.concordion.api.listener.ExecuteEvent;
+import org.concordion.api.listener.ExecuteListener;
+import org.concordion.api.listener.ExpressionEvaluatedEvent;
+import org.concordion.api.listener.MissingRowEvent;
+import org.concordion.api.listener.SpecificationProcessingEvent;
+import org.concordion.api.listener.SpecificationProcessingListener;
+import org.concordion.api.listener.SurplusRowEvent;
+import org.concordion.api.listener.ThrowableCaughtEvent;
+import org.concordion.api.listener.ThrowableCaughtListener;
+import org.concordion.api.listener.VerifyRowsListener;
 
 public class TooltipRenderingListener implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ExecuteListener,
         SpecificationProcessingListener, VerifyRowsListener, ThrowableCaughtListener {

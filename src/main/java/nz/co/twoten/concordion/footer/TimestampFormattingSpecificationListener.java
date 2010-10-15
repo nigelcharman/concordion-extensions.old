@@ -1,8 +1,8 @@
 package nz.co.twoten.concordion.footer;
 
 import org.concordion.api.Element;
-import org.concordion.api.command.SpecificationProcessingEvent;
-import org.concordion.api.command.SpecificationProcessingListener;
+import org.concordion.api.listener.SpecificationProcessingEvent;
+import org.concordion.api.listener.SpecificationProcessingListener;
 
 public class TimestampFormattingSpecificationListener implements SpecificationProcessingListener {
     

@@ -7,24 +7,24 @@ import nz.co.twoten.concordion.ScreenshotExtension;
 import nz.co.twoten.concordion.ScreenshotTaker;
 import nz.co.twoten.concordion.ScreenshotUnavailableException;
 
+import org.concordion.api.AbstractCommand;
 import org.concordion.api.CommandCall;
-import org.concordion.api.ConcordionBuildEvent;
-import org.concordion.api.ConcordionBuildListener;
 import org.concordion.api.Element;
 import org.concordion.api.Evaluator;
 import org.concordion.api.Resource;
 import org.concordion.api.ResultRecorder;
 import org.concordion.api.Target;
-import org.concordion.api.command.AbstractCommand;
-import org.concordion.api.command.AssertEqualsListener;
-import org.concordion.api.command.AssertFailureEvent;
-import org.concordion.api.command.AssertFalseListener;
-import org.concordion.api.command.AssertSuccessEvent;
-import org.concordion.api.command.AssertTrueListener;
-import org.concordion.api.command.SpecificationProcessingEvent;
-import org.concordion.api.command.SpecificationProcessingListener;
-import org.concordion.api.command.ThrowableCaughtEvent;
-import org.concordion.api.command.ThrowableCaughtListener;
+import org.concordion.api.listener.AssertEqualsListener;
+import org.concordion.api.listener.AssertFailureEvent;
+import org.concordion.api.listener.AssertFalseListener;
+import org.concordion.api.listener.AssertSuccessEvent;
+import org.concordion.api.listener.AssertTrueListener;
+import org.concordion.api.listener.ConcordionBuildEvent;
+import org.concordion.api.listener.ConcordionBuildListener;
+import org.concordion.api.listener.SpecificationProcessingEvent;
+import org.concordion.api.listener.SpecificationProcessingListener;
+import org.concordion.api.listener.ThrowableCaughtEvent;
+import org.concordion.api.listener.ThrowableCaughtListener;
 import org.concordion.internal.util.Check;
 
 public class ScreenshotEmbedder extends AbstractCommand implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ConcordionBuildListener, SpecificationProcessingListener, ThrowableCaughtListener {
