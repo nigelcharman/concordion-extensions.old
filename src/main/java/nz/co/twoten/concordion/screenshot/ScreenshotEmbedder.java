@@ -31,7 +31,7 @@ public class ScreenshotEmbedder extends AbstractCommand implements AssertEqualsL
 
     private int index = 1;
     private ScreenshotTaker screenshotTaker = new RobotScreenshotTaker();
-    private int maxWidth;
+    private int maxWidth = 600;
     private boolean screenshotOnAssertionFailure = true;
     private boolean screenshotOnAssertionSuccess = false;
     private boolean screenshotOnThrowable = true;
