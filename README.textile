@@ -2,6 +2,8 @@ h1. concordion-extensions
 
 Contains 3 "Concordion":http://concordion.org extensions. These require Concordion 1.4.0 or later.
 
+The extensions are packaged in the @concordion-extensions@ jar.  For example source code, download the @concordion-extension-demo@ zip file.
+
 To install the default configuration of all 3 extensions, set the @concordion.extensions@ system property to @nz.co.twoten.concordion.Extensions@, or see the individual extensions for installation details. To install multiple or customised extensions, supply a comma-separated list of extensions or extension factories in the @concordion.extensions@ system property. 
 
 The system property is typically set in the @BeforeClass of a base test case:
@@ -58,7 +60,7 @@ Thanks to Trent Richardson for the "CSS Tooltip":http://trentrichardson.com/exam
 
 h2. ScreenshotExtension
 
-Adds screenshots to the Concordion output, typically when failures or exceptions occur. The screenshot is displayed when you hover over the relevant element. Clicking on the element will open the image in the current browser window. 
+Adds screenshots to the Concordion output, typically when failures or exceptions occur. The screenshot is displayed when you hover over the relevant element. Clicking on the element will open the image in the current browser window. See "my blog":http://tutansblog.blogspot.com/2010/10/displaying-screenshots-on-acceptance.html for screenshots.
 
 It can also be used as a command, to explicitly add screenshots to the output HTML. 
 
