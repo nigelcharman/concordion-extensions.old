@@ -13,6 +13,11 @@ import javax.imageio.ImageIO;
 
 import nz.co.twoten.concordion.ScreenshotTaker;
 
+/**
+ * Takes screenshots using {@link java.awt.Robot}.
+ * <p> 
+ * This code was derived from Mark Derricutt's <a href="http://github.com/talios/concordion-examples/blob/master/src/test/java/com/talios/ScreenshotCommand.java">ScreenshotCommand</a>.
+ */
 public class RobotScreenshotTaker implements ScreenshotTaker {
 
     private static final String FILE_TYPE = "jpg";
